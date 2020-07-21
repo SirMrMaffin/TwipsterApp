@@ -10,6 +10,8 @@ namespace TwipsterApp
         public MainWindow()
         {
             InitializeComponent();
+            
+            Console.WriteLine("Some Text");
         }
     }
 }
