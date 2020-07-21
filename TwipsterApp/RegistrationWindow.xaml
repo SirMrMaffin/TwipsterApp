@@ -1,0 +1,23 @@
+﻿<Window x:Class="TwipsterApp.RegistrationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TwipsterApp"
+        mc:Ignorable="d"
+        Title="Twipster Registration" Height="468" Width="229" ResizeMode="NoResize">
+    <Grid>
+        <Label Content="Twipster" FontSize="20" FontFamily="Impact" HorizontalAlignment="Left" Margin="14,10,0,0" VerticalAlignment="Top" Height="37" Width="117" VerticalContentAlignment="Top"/>
+        <Label Content="LOGIN" HorizontalAlignment="Center" Height="25" Margin="0,52,0,0" VerticalAlignment="Top" Width="150"/>
+        <TextBox Name="LoginTexBox" VerticalAlignment="Top" HorizontalAlignment="Center" Height="35" Width="150" TextWrapping="Wrap" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0,77,0,0"/>
+        <Label Content="NAME" HorizontalAlignment="Center" Height="25" Margin="0,112,0,0" VerticalAlignment="Top" Width="150"/>
+        <TextBox x:Name="NameTexBox" VerticalAlignment="Top" HorizontalAlignment="Center" Height="35" Width="150" TextWrapping="Wrap" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0,137,0,0"/>
+        <Label Content="SURNAME" HorizontalAlignment="Center" Height="25" Margin="0,172,0,0" VerticalAlignment="Top" Width="150"/>
+        <TextBox x:Name="SurnameTexBox" VerticalAlignment="Top" HorizontalAlignment="Center" Height="35" Width="150" TextWrapping="Wrap" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0,197,0,0"/>
+        <Label Content="DAY OF BIRTH" HorizontalAlignment="Center" Height="25" Margin="0,232,0,0" VerticalAlignment="Top" Width="150"/>
+        <DatePicker Name="DateOfBirthPicker" HorizontalAlignment="Center" Margin="0,262,0,0" VerticalAlignment="Top" Height="28" Width="150"/>
+        <Label Content="PASSWORD" HorizontalAlignment="Center" Height="25" Margin="0,295,0,0" VerticalAlignment="Top" Width="150"/>
+        <TextBox Name="PasswordTexBox" VerticalAlignment="Top" HorizontalAlignment="Center" Height="35" Width="150" TextWrapping="Wrap" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0,320,0,0"/>
+        <Button Name="RegisterButton" Content="Register" FontSize="20" HorizontalAlignment="Center" Height="35" Width="151" Margin="0,376,0,0" VerticalAlignment="Top" VerticalContentAlignment="Top" Click="OnRegisterButtonClicked"/>
+    </Grid>
+</Window>
