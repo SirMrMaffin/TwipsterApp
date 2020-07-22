@@ -2,9 +2,16 @@
 
 namespace TwipsterApp.Models
 {
-    class TwipsterDbContext : DbContext
+    public class TwipsterDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<User>()
+                .HasIndex(u => u.Login)
+                .IsUnique();
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
