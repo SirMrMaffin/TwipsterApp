@@ -2,16 +2,13 @@
 
 namespace TwipsterApp.Models
 {
-    class PasswordValidator : IValidator
+    public class PasswordValidator : IValidator
     {
         public bool Validate(User user, string lineToValidate)
         {
-            if (user.Password.Equals(lineToValidate))
-            {
+            if (user.Password.Equals(lineToValidate)) {
                 return true;
-            }
-            else
-            {
+            } else {
                 throw new Exception("Invalid password");
             }
         }

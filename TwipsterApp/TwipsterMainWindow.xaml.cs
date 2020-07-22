@@ -23,7 +23,7 @@ namespace TwipsterApp
             {
                 users = context.Users.OrderBy(x => x.Name).ToArray();
             };
-            //Deleting current user and users passwords and logins from array
+            //Deleting current user and other users passwords and logins from array
             var usersCensored = users.Where(x => x.Login != currentUser.Login)
                                      .Select(x => new { x.Name, x.Surname, x.BirthDate });
 
