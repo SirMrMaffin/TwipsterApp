@@ -1,6 +1,8 @@
-﻿namespace TwipsterApp.Models
+﻿using System;
+
+namespace TwipsterApp.Models
 {
-    class PasswordValidator : IValidate
+    class PasswordValidator : IValidator
     {
         public bool Validate(User user, string lineToValidate)
         {
@@ -10,7 +12,7 @@
             }
             else
             {
-                return false;
+                throw new Exception("Invalid password");
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using TwipsterApp.Models;
@@ -10,6 +11,7 @@ namespace TwipsterApp
     /// </summary>
     public partial class LoginWindow : Window
     {
+        public static User currentUser;
         public LoginWindow()
         {
             InitializeComponent();
@@ -23,20 +25,23 @@ namespace TwipsterApp
 
         private void OnLoginButtonClicked(object sender, RoutedEventArgs e)
         {
-            var user = new User();
+            //var user = new User();
             var validator = new PasswordValidator();
+            var twipsterMainWindow = new TwipsterMainWindow();
+
+            var validators = new List<IValidator>
+            {
+                new PasswordValidator()
+            };
 
             try {
                 using (var context = new TwipsterDbContext())
                 {
-                    user = context.Users.Single(x => x.Login == LoginTexBox.Text);
+                    currentUser = context.Users.Single(x => x.Login == LoginTexBox.Text);
                 }
-                if (validator.Validate(user, PasswordTexBox.Text) == true)
-                {
-                    MessageBox.Show("kek");
-                } else {
-                    throw new Exception("Invalid password");
-                }
+                validators[0].Validate(currentUser, PasswordTexBox.Text);
+                twipsterMainWindow.Show();
+                Close();
             } catch (Exception x) {
                 MessageBox.Show(x.Message);
             }

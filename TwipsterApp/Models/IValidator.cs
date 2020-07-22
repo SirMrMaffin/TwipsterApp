@@ -2,7 +2,7 @@
 
 namespace TwipsterApp
 {
-    public interface IValidate
+    public interface IValidator
     {
         public bool Validate(User user, string lineToValidate);
     }
