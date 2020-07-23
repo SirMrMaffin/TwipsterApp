@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Windows;
 using TwipsterApp.Models;
 
@@ -24,18 +22,18 @@ namespace TwipsterApp
 
         private void OnLoginButtonClicked(object sender, RoutedEventArgs e)
         {
-            var passwordValidator = new PasswordValidator();
-
             using (var context = new TwipsterDbContext())
-            try {
-                var currentUser = new CurrentUserModel(context.Users.Single(x => x.Login == LoginTexBox.Text));
+            try
+            {
+                CurrentUserModel.currentUser = (context.Users.Single(x => x.Login == LoginTexBox.Text));
+                var passwordValidator = new PasswordValidator();
                 passwordValidator.Validate(CurrentUserModel.currentUser, PasswordTexBox.Text);
-            } catch (Exception x) {
+            } catch (Exception x) 
+            {
                 MessageBox.Show(x.Message);
             }
 
-            var twipsterMainWindow = new TwipsterMainWindow();
-            twipsterMainWindow.Show();
+            new TwipsterMainWindow().Show();
             Close();
         }
     }

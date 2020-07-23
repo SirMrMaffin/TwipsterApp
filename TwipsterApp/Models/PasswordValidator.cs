@@ -6,7 +6,8 @@ namespace TwipsterApp.Models
     {
         public void Validate(User user, string lineToValidateTo)
         {
-            if (user.Password != lineToValidateTo) {
+            if (user.Password != lineToValidateTo)
+            {
                 throw new Exception("Invalid password.");
             }
         }

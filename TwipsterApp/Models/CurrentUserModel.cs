@@ -1,14 +1,6 @@
-﻿using System;
-
-namespace TwipsterApp.Models
+﻿namespace TwipsterApp.Models
 {
-    public class CurrentUserModel
+    public static class CurrentUserModel
     {
-        public static User currentUser;
-        
-        public CurrentUserModel(User user)
-        {
-            currentUser = user;
-        }
-    }
+        public static User currentUser;    }
 }

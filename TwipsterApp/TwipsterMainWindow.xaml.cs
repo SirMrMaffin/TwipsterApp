@@ -24,10 +24,10 @@ namespace TwipsterApp
                 var usersCensored = context.Users.OrderBy(x => x.Name)
                                     .Where(x => x.Login != currentUser.Login)
                                     .Select(x => new { x.Name, x.Surname, x.BirthDate })
-                                    .ToArray();
+                                    .ToList();
 
                 PutCurrentUserInformationToTextBoxt(currentUser);
-                UsersGrid.ItemsSource = usersCensored.ToList();
+                UsersGrid.ItemsSource = usersCensored;
             }
         }
 
