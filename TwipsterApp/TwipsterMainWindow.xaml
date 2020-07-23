@@ -1,0 +1,18 @@
+﻿<Window x:Class="TwipsterApp.TwipsterMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TwipsterApp"
+        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="TwipsterMainWindow" Height="224" Width="348"
+        Loaded="OnWindowLoaded">
+    <Grid>
+        <Label Content="Other users:" HorizontalAlignment="Left" Height="25" Margin="115,10,0,0" VerticalAlignment="Top" Width="78" VerticalContentAlignment="Top"/>
+        <DataGrid Name="UsersGrid" HorizontalAlignment="Left" Height="144" VerticalAlignment="Top" Width="200" Margin="125,40,0,0"/>
+        <Label Content="Current user:" HorizontalAlignment="Left" Height="25" Margin="0,10,0,0" VerticalAlignment="Top" Width="78" VerticalContentAlignment="Top"/>
+        <TextBlock Name="CurrentUserTextBlock" HorizontalAlignment="Left" Height="144" Margin="10,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104"/>
+        <Button Name="LogOutButton" Content="Log out" HorizontalAlignment="Left" Height="25" Margin="234,10,0,0" VerticalAlignment="Top" Width="81" Click="OnLogOutButtonClicked"/>
+    </Grid>
+</Window>

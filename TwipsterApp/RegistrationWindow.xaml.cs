@@ -31,9 +31,9 @@ namespace TwipsterApp
                     context.Add(user);
                     context.SaveChanges();
 
-                    this.Close();
+                    Close();
                 } catch (Exception x) {
-                    MessageBox.Show(x.Message + "\n Check provided information");
+                    MessageBox.Show(x.Message + "\n Check provided information.");
                 }
             }
         }
