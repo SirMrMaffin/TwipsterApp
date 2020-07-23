@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows;
 using TwipsterApp.Models;
 
@@ -11,7 +12,6 @@ namespace TwipsterApp
     /// </summary>
     public partial class LoginWindow : Window
     {
-        public static User currentUser;
         public LoginWindow()
         {
             InitializeComponent();
@@ -19,33 +19,24 @@ namespace TwipsterApp
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-            var registrationWindow = new RegistrationWindow();
-
-            registrationWindow.Show();
+            new RegistrationWindow().Show();
         }
 
         private void OnLoginButtonClicked(object sender, RoutedEventArgs e)
         {
-            //var user = new User();
-            var twipsterMainWindow = new TwipsterMainWindow();
+            var passwordValidator = new PasswordValidator();
 
-            var validators = new List<IValidator>
-            {
-                new PasswordValidator()
-            };
-
+            using (var context = new TwipsterDbContext())
             try {
-                using (var context = new TwipsterDbContext())
-                {
-                    currentUser = context.Users.Single(x => x.Login == LoginTexBox.Text);
-                }
-                validators[0].Validate(currentUser, PasswordTexBox.Text);
-
-                twipsterMainWindow.Show();
-                Close();
+                var currentUser = new CurrentUserModel(context.Users.Single(x => x.Login == LoginTexBox.Text));
+                passwordValidator.Validate(CurrentUserModel.currentUser, PasswordTexBox.Text);
             } catch (Exception x) {
                 MessageBox.Show(x.Message);
             }
+
+            var twipsterMainWindow = new TwipsterMainWindow();
+            twipsterMainWindow.Show();
+            Close();
         }
     }
 }

@@ -33,7 +33,7 @@ namespace TwipsterApp
 
                     Close();
                 } catch (Exception x) {
-                    MessageBox.Show(x.Message + "\n Check provided information");
+                    MessageBox.Show(x.Message + "\n Check provided information.");
                 }
             }
         }

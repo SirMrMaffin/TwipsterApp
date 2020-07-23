@@ -14,31 +14,30 @@ namespace TwipsterApp
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void OnWindowLoaded(object sender, RoutedEventArgs e)
         {
-            var currentUser = LoginWindow.currentUser;
-            User[] users;
+            var currentUser = CurrentUserModel.currentUser;
 
             using (var context = new TwipsterDbContext())
             {
-                users = context.Users.OrderBy(x => x.Name).ToArray();
-            };
-            //Deleting current user and other users passwords and logins from array
-            var usersCensored = users.Where(x => x.Login != currentUser.Login)
-                                     .Select(x => new { x.Name, x.Surname, x.BirthDate });
+                //Deleting current user and other users passwords and logins from array
+                var usersCensored = context.Users.OrderBy(x => x.Name)
+                                    .Where(x => x.Login != currentUser.Login)
+                                    .Select(x => new { x.Name, x.Surname, x.BirthDate })
+                                    .ToArray();
 
-            CurrentUserInfoToTextBox(currentUser);
-            UsersGrid.ItemsSource = usersCensored.ToList();
+                PutCurrentUserInformationToTextBoxt(currentUser);
+                UsersGrid.ItemsSource = usersCensored.ToList();
+            }
         }
 
-        private void LogOutButton_Click(object sender, RoutedEventArgs e)
+        private void OnLogOutButtonClicked(object sender, RoutedEventArgs e)
         {
-            var loginWindow = new LoginWindow();
-            loginWindow.Show();
+            new LoginWindow().Show();
             Close();
         }
 
-        private void CurrentUserInfoToTextBox(User currentUser)
+        private void PutCurrentUserInformationToTextBoxt(User currentUser)
         {
             CurrentUserTextBlock.Text = $"{currentUser.Name} {currentUser.Surname} \nDate of birth: {currentUser.BirthDate.Date.ToString()} \nLogin: {currentUser.Login}";
         }
