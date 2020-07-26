@@ -5,6 +5,7 @@ namespace TwipsterApp.Models
     public class TwipsterDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

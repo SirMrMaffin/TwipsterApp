@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace TwipsterApp.Models
@@ -22,5 +23,7 @@ namespace TwipsterApp.Models
         [Required]
         [MinLength(3), MaxLength(15)]
         public string Password { get; set; }
+
+        public ICollection<Post> Posts { get; set; } = new List<Post>();
     }
 }
