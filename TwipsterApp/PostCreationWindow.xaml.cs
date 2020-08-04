@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using TwipsterApp.Data;
 using TwipsterApp.Models;
 
 namespace TwipsterApp
@@ -9,32 +10,39 @@ namespace TwipsterApp
     /// </summary>
     public partial class PostCreationWindow : Window
     {
-        public PostCreationWindow()
+        private readonly Action callback;
+
+        private PostCreationWindow()
         {
             InitializeComponent();
         }
 
+        public PostCreationWindow(Action callback) : this()
+        {
+            this.callback = callback;
+        }
+
         private void OnCreatePostButtonClicked(object sender, RoutedEventArgs e)
         {
-            using (var context = new TwipsterDbContext())
+            using var context = new TwipsterDbContext();
+            var post = new Post
             {
-                var post = new Post
-                {
-                    UserId = CurrentUserModel.currentUser.Id,
-                    PostTime = DateTime.Now,
-                    Content = PostContentTextBox.Text
-                };
+                UserId = CurrentUserModel.currentUser.Id,
+                PostTime = DateTime.Now,
+                Content = PostContentTextBox.Text
+            };
 
-                try
-                {
-                    context.Add(post);
-                    context.SaveChanges();
-                    
-                    Close();
-                } catch (Exception x)
-                {
-                    MessageBox.Show(x.Message + "\n Check provided information.");
-                }
+            try
+            {
+                context.Add(post);
+                context.SaveChanges();
+
+                callback?.Invoke();
+
+                Close();
+            } catch (Exception x)
+            {
+                MessageBox.Show(x.Message + "\n Check provided information.");
             }
         }
 

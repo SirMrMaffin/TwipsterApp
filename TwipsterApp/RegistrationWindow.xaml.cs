@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using TwipsterApp.Data;
 using TwipsterApp.Models;
 
 namespace TwipsterApp

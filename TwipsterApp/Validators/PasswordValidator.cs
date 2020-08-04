@@ -1,6 +1,8 @@
 ﻿using System;
+using TwipsterApp.Interfaces;
+using TwipsterApp.Models;
 
-namespace TwipsterApp.Models
+namespace TwipsterApp.Validators
 {
     public class PasswordValidator : IValidator
     {

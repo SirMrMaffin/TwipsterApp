@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Windows;
+using TwipsterApp.Data;
 using TwipsterApp.Models;
 
 namespace TwipsterApp
@@ -18,23 +19,31 @@ namespace TwipsterApp
         {
             var currentUser = CurrentUserModel.currentUser;
 
-            using (var context = new TwipsterDbContext())
-            {
-                //Deleting current user and other users passwords and logins from array
-                var usersCensored = context.Users.OrderBy(x => x.Name)
-                                    .Where(x => x.Login != currentUser.Login)
-                                    .Select(x => new { x.Name, x.Surname, x.BirthDate })
-                                    .ToList();
+            using var context = new TwipsterDbContext();
+            
+            //Deleting current user and other users passwords and logins from array
+            var usersCensored = context.Users.OrderBy(x => x.Name)
+                                .Where(x => x.Login != currentUser.Login)
+                                .Select(x => new SelectedUserModel 
+                                {
+                                    Login = x.Login,
+                                    Name = x.Name,
+                                    Surname = x.Surname,
+                                    BirthDate = x.BirthDate
+                                })
+                                .ToList();
 
-                PutCurrentUserInformationToTextBoxt(currentUser);
-                UsersGrid.ItemsSource = usersCensored;
-                PostGridRefresh(context);
-            }
+            PutCurrentUserInformationToTextBoxt(currentUser);
+            UsersGrid.ItemsSource = usersCensored;
+            PostGridRefresh(context);
         }
 
         private void OnCreatePostButtonClicked(object sender, RoutedEventArgs e)
         {
-            new PostCreationWindow().Show();
+            new PostCreationWindow(() => 
+            {
+                OnShowAllPostsButtonClicked(null, null);
+            }).Show();
         }
 
         private void OnLogOutButtonClicked(object sender, RoutedEventArgs e)
@@ -43,25 +52,39 @@ namespace TwipsterApp
             Close();
         }
 
+        private void OnShowAllPostsButtonClicked(object sender, RoutedEventArgs e)
+        {
+            using var context = new TwipsterDbContext();
+            PostGridRefresh(context);
+        }
+
+        private void OnShowSelectedUserPostsClicked(object sender, RoutedEventArgs e)
+        {
+            using var context = new TwipsterDbContext();
+            var selectedUserLogin = UsersGrid.SelectedItem as SelectedUserModel;
+            var selectedUser = context.Users.Single(x => x.Login == selectedUserLogin.Login);
+            var userPostsList = context.Posts.Where(x => x.UserId == selectedUser.Id).ToList();
+            PostsGrid.ItemsSource = userPostsList;
+        }
+
         private void PutCurrentUserInformationToTextBoxt(User currentUser)
         {
             CurrentUserTextBlock.Text = $"{currentUser.Name} {currentUser.Surname} \nDate of birth: {currentUser.BirthDate.Date} \nLogin: {currentUser.Login}";
         }
 
-        private void OnPostsRefreshButtonClicked(object sender, RoutedEventArgs e)
+        public void PostGridRefresh(TwipsterDbContext context)
         {
-            using (var context = new TwipsterDbContext())
-            {
-                PostGridRefresh(context);
-            }
-        }
-        private void PostGridRefresh(TwipsterDbContext context)
-        {
-            //need to be parsed
             var postsList = context.Posts.OrderBy(x => x.PostTime)
-                                .Select(x => new { x.User.Name, x.User.Surname, x.Content, x.PostTime })
+                                .Select(x => new PostViewModel
+                                {
+                                    Name = x.User.Name,
+                                    Surname = x.User.Surname,
+                                    Content = x.Content,
+                                    PostTime = x.PostTime 
+                                })
                                 .ToList();
             PostsGrid.ItemsSource = postsList;
         }
+
     }
 }

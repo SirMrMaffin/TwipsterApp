@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TwipsterApp.Models;
 
-namespace TwipsterApp.Models
+namespace TwipsterApp.Data
 {
     public class TwipsterDbContext : DbContext
     {

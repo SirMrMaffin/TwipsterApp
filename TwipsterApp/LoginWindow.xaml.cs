@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using TwipsterApp.Data;
 using TwipsterApp.Models;
+using TwipsterApp.Validators;
 
 namespace TwipsterApp
 {
@@ -25,7 +27,7 @@ namespace TwipsterApp
             using (var context = new TwipsterDbContext())
             try
             {
-                CurrentUserModel.currentUser = (context.Users.Single(x => x.Login == LoginTexBox.Text));
+                CurrentUserModel.currentUser = context.Users.Single(x => x.Login == LoginTexBox.Text);
                 var passwordValidator = new PasswordValidator();
                 passwordValidator.Validate(CurrentUserModel.currentUser, PasswordTexBox.Text);
             } catch (Exception x) 
