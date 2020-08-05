@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace TwipsterApp.ViewModels
+namespace TwipsterApp.Models
 {
     public class User
     {

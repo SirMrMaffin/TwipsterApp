@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows;
 using TwipsterApp.Data;
-using TwipsterApp.ViewModels;
+using TwipsterApp.Models;
 using TwipsterApp.Validators;
 
 namespace TwipsterApp

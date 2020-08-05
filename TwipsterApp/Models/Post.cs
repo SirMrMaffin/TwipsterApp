@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace TwipsterApp.ViewModels
+namespace TwipsterApp.Models
 {
     public class Post
     {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TwipsterApp.ViewModels;
+using TwipsterApp.Models;
 
 namespace TwipsterApp.Data
 {

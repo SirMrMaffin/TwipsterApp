@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Windows;
 using TwipsterApp.Data;
+using TwipsterApp.Models;
 using TwipsterApp.ViewModels;
 
 namespace TwipsterApp
