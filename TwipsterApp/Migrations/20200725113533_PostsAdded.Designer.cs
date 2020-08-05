@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using TwipsterApp.Data;
 
 namespace TwipsterApp.Migrations
 {
     [DbContext(typeof(TwipsterDbContext))]
-    partial class TwipsterDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200725113533_PostsAdded")]
+    partial class PostsAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,7 +85,7 @@ namespace TwipsterApp.Migrations
 
             modelBuilder.Entity("TwipsterApp.Models.Post", b =>
                 {
-                    b.HasOne("TwipsterApp.Models.User", "User")
+                    b.HasOne("TwipsterApp.Models.User", null)
                         .WithMany("Posts")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

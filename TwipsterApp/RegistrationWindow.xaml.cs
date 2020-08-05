@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using TwipsterApp.Data;
 using TwipsterApp.Models;
 
 namespace TwipsterApp
@@ -32,7 +33,8 @@ namespace TwipsterApp
                     context.SaveChanges();
 
                     Close();
-                } catch (Exception x) {
+                } catch (Exception x) 
+                {
                     MessageBox.Show(x.Message + "\n Check provided information.");
                 }
             }

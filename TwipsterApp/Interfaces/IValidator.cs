@@ -1,6 +1,6 @@
 ﻿using TwipsterApp.Models;
 
-namespace TwipsterApp
+namespace TwipsterApp.Interfaces
 {
     public interface IValidator
     {

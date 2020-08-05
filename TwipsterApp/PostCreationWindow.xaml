@@ -1,0 +1,14 @@
+﻿<Window x:Class="TwipsterApp.PostCreationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TwipsterApp"
+        mc:Ignorable="d"
+        Title="PostCreationWindow" Height="185" Width="306" ResizeMode="NoResize">
+    <Grid>
+        <TextBox Name="PostContentTextBox" VerticalAlignment="Top" Margin="21,10,22,0" TextWrapping="Wrap" Width="263" Height="114"/>
+        <Button Name="CancelButton" Content="Cancel" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="21,114,158,14" Width="127" Click="OnCancelButtonClicked"/>
+        <Button Name="CreatePostButton" Content="Create post" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="158,114,22,14" Width="126" Click="OnCreatePostButtonClicked"/>
+    </Grid>
+</Window>

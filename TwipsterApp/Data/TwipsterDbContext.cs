@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TwipsterApp.Models;
 
-namespace TwipsterApp.Models
+namespace TwipsterApp.Data
 {
     public class TwipsterDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
