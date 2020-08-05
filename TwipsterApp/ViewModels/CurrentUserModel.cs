@@ -1,4 +1,4 @@
-﻿namespace TwipsterApp.Models
+﻿namespace TwipsterApp.ViewModels
 {
     public static class CurrentUserModel
     {

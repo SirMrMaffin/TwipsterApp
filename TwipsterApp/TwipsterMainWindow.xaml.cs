@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Windows;
 using TwipsterApp.Data;
-using TwipsterApp.Models;
+using TwipsterApp.ViewModels;
 
 namespace TwipsterApp
 {
@@ -61,9 +61,17 @@ namespace TwipsterApp
         private void OnShowSelectedUserPostsClicked(object sender, RoutedEventArgs e)
         {
             using var context = new TwipsterDbContext();
-            var selectedUserLogin = UsersGrid.SelectedItem as SelectedUserModel;
-            var selectedUser = context.Users.Single(x => x.Login == selectedUserLogin.Login);
-            var userPostsList = context.Posts.Where(x => x.UserId == selectedUser.Id).ToList();
+            var selectedUser = context.Users.Single(x => x.Login == (UsersGrid.SelectedItem as SelectedUserModel).Login);
+
+            var userPostsList = context.Posts.Where(x => x.UserId == selectedUser.Id)
+                                        .Select(x => new PostViewModel 
+                                        {
+                                            Name = x.User.Name,
+                                            Surname = x.User.Surname,
+                                            Content = x.Content,
+                                            PostTime = x.PostTime
+                                        })
+                                        .ToList();
             PostsGrid.ItemsSource = userPostsList;
         }
 
@@ -74,15 +82,7 @@ namespace TwipsterApp
 
         public void PostGridRefresh(TwipsterDbContext context)
         {
-            var postsList = context.Posts.OrderBy(x => x.PostTime)
-                                .Select(x => new PostViewModel
-                                {
-                                    Name = x.User.Name,
-                                    Surname = x.User.Surname,
-                                    Content = x.Content,
-                                    PostTime = x.PostTime 
-                                })
-                                .ToList();
+            var postsList = context.Posts.OrderBy(x => x.PostTime).ToList();
             PostsGrid.ItemsSource = postsList;
         }
 

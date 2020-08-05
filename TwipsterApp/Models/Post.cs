@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace TwipsterApp.Models
+namespace TwipsterApp.ViewModels
 {
     public class Post
     {
@@ -12,9 +12,9 @@ namespace TwipsterApp.Models
         [Required]
         public DateTime PostTime { get; set; }
         [Required]
-        [MinLength(3),MaxLength(225)]
+        [MinLength(3), MaxLength(225)]
         public string Content { get; set; }
 
-        public User User { get; set; }
+        public virtual User User { get; set; }
     }
 }

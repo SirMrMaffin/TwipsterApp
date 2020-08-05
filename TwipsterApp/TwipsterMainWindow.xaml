@@ -6,23 +6,24 @@
         xmlns:local="clr-namespace:TwipsterApp"
         xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="TwipsterMainWindow" Height="408" Width="653"
+        Title="TwipsterMainWindow" Height="423" Width="669" ResizeMode="NoResize"
         Loaded="OnWindowLoaded">
     <Grid>
+        <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Width="197"/>
         <Label Content="Current user:" FontSize="25" FontWeight="ExtraBold" HorizontalAlignment="Left" Height="44" Margin="10,10,0,0" VerticalAlignment="Top" Width="174" VerticalContentAlignment="Top"/>
-        <TextBlock Background="BurlyWood" Name="CurrentUserTextBlock" HorizontalAlignment="Left" Height="153" Margin="10,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="174"/>
-        <Button Name="CreatePostButton" Content="Create post" Margin="10,212,469,0" VerticalAlignment="Top" Height="37" Click="OnCreatePostButtonClicked"/>
-        <Button x:Name="DeletePostButton" Content="Delete post" Margin="10,254,469,0" VerticalAlignment="Top" Height="37" Click="OnCreatePostButtonClicked"/>
-        <Button Name="LogOutButton" Content="Log out" HorizontalAlignment="Left" Height="37" Margin="10,296,0,0" VerticalAlignment="Top" Width="174" Click="OnLogOutButtonClicked"/>
-        <Border BorderThickness="1" BorderBrush="Black" Margin="0,0,456,0"/>
+        <TextBlock Background="BurlyWood" Name="CurrentUserTextBlock" Height="152" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,54,0,186" TextWrapping="Wrap" Width="174"/>
+        <Button Name="CreatePostButton" Content="Create post" Margin="10,212,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="37" Click="OnCreatePostButtonClicked" Width="174"/>
+        <Button x:Name="DeletePostButton" Content="Delete post" Margin="10,254,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="37" Click="OnCreatePostButtonClicked" Width="174"/>
+        <Button Name="LogOutButton" Content="Log out" Margin="10,296,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="174" Height="37" Click="OnLogOutButtonClicked"/>
 
-        <Label Content="Other users:" FontSize="25" FontWeight="ExtraBold" HorizontalAlignment="Left" Height="44" Margin="211,10,0,0" VerticalAlignment="Top" Width="169" VerticalContentAlignment="Top"/>
-        <DataGrid Name="UsersGrid" Height="289" VerticalAlignment="Top" Margin="211,54,273,0" SelectionMode="Single"/>
-        <Border BorderThickness="1" BorderBrush="Black" Margin="197,0,259,0"/>
+        <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Width="197" Margin="197,0,0,0"/>
+        <Label Content="Other users:" HorizontalAlignment="Left" FontSize="25" FontWeight="ExtraBold" Height="44" Margin="211,10,0,0" VerticalAlignment="Top" Width="169" VerticalContentAlignment="Top"/>
+        <DataGrid Name="UsersGrid" HorizontalAlignment="Left" Height="289" VerticalAlignment="Top" Margin="211,54,0,0" SelectionMode="Single" Width="169"/>
 
-        <Label Content="Posts:" FontSize="25" FontWeight="ExtraBold" HorizontalAlignment="Left" Height="44" Margin="405,10,0,0" VerticalAlignment="Top" Width="169" VerticalContentAlignment="Top"/>
-        <DataGrid Name ="PostsGrid" Height="289" Margin="405,54,10,0" VerticalAlignment="Top"/>
-        <Button Name="ShowAllPostsButton" Content="Show all posts" HorizontalAlignment="Left" Margin="405,348,0,0" VerticalAlignment="Top" Height="25" Width="119" Click="OnShowAllPostsButtonClicked"/>
-        <Button Name="ShowSelectedUserPosts" Content="Show selected user posts" HorizontalAlignment="Left" Margin="537,348,0,0" VerticalAlignment="Top" Height="25" Width="106" Click="OnShowSelectedUserPostsClicked"/>
+        <Border BorderThickness="1" BorderBrush="Black" Margin="394,0,0,0" HorizontalAlignment="Left" Width="260"/>
+        <Label Content="Posts:" FontSize="25" FontWeight="ExtraBold" Height="44" Margin="405,10,00,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="169" VerticalContentAlignment="Top"/>
+        <DataGrid Name ="PostsGrid" Height="289" Margin="405,54,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="238"/>
+        <Button Name="ShowAllPostsButton" Content="Show all posts" Margin="405,348,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="25" Width="119" Click="OnShowAllPostsButtonClicked"/>
+        <Button Name="ShowSelectedUserPosts" Content="Selected user posts" Margin="537,348,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="25" Width="106" Click="OnShowSelectedUserPostsClicked"/>
     </Grid>
 </Window>

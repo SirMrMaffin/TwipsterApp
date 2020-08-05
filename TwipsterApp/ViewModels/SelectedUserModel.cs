@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TwipsterApp.Models
+namespace TwipsterApp.ViewModels
 {
     public class SelectedUserModel
     {

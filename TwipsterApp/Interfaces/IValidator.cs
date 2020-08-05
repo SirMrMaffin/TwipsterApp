@@ -1,4 +1,4 @@
-﻿using TwipsterApp.Models;
+﻿using TwipsterApp.ViewModels;
 
 namespace TwipsterApp.Interfaces
 {

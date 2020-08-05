@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace TwipsterApp.Models
+namespace TwipsterApp.ViewModels
 {
     public class User
     {
@@ -24,6 +24,6 @@ namespace TwipsterApp.Models
         [MinLength(3), MaxLength(15)]
         public string Password { get; set; }
 
-        public ICollection<Post> Posts { get; set; } = new List<Post>();
+        public virtual ICollection<Post> Posts { get; set; }
     }
 }

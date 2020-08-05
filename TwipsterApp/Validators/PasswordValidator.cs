@@ -1,6 +1,6 @@
 ﻿using System;
 using TwipsterApp.Interfaces;
-using TwipsterApp.Models;
+using TwipsterApp.ViewModels;
 
 namespace TwipsterApp.Validators
 {
