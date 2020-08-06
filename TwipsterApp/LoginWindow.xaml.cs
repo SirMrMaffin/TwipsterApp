@@ -24,15 +24,16 @@ namespace TwipsterApp
 
         private void OnLoginButtonClicked(object sender, RoutedEventArgs e)
         {
-            using (var context = new TwipsterDbContext())
+            using var context = new TwipsterDbContext();
             try
             {
                 CurrentUserModel.CurrentUser = context.Users.Single(x => x.Login == LoginTexBox.Text);
                 var passwordValidator = new PasswordValidator();
-                passwordValidator.Validate(CurrentUserModel.CurrentUser, PasswordTexBox.Text);
+                passwordValidator.Validate(CurrentUserModel.CurrentUser.Password, PasswordTexBox.Text);
                 new TwipsterMainWindow().Show();
                 Close();
-            } catch (Exception x) 
+            }
+            catch (Exception x)
             {
                 MessageBox.Show(x.Message);
             }

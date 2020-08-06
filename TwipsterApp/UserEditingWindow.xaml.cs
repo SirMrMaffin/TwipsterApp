@@ -62,5 +62,10 @@ namespace TwipsterApp
             CurrentUserModel.CurrentUser = currentUserEntity;
             userTextBlock.Text = $"{CurrentUserModel.CurrentUser.Name} {CurrentUserModel.CurrentUser.Surname} \nDate of birth: {CurrentUserModel.CurrentUser.BirthDate.Date} \nLogin: {CurrentUserModel.CurrentUser.Login}";
         }
+
+        private void ChangePasswordButton_Click(object sender, RoutedEventArgs e)
+        {
+            new PasswordChangeWindow().Show();
+        }
     }
 }
