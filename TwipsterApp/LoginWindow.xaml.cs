@@ -27,9 +27,9 @@ namespace TwipsterApp
             using (var context = new TwipsterDbContext())
             try
             {
-                CurrentUserModel.currentUser = context.Users.Single(x => x.Login == LoginTexBox.Text);
+                CurrentUserModel.CurrentUser = context.Users.Single(x => x.Login == LoginTexBox.Text);
                 var passwordValidator = new PasswordValidator();
-                passwordValidator.Validate(CurrentUserModel.currentUser, PasswordTexBox.Text);
+                passwordValidator.Validate(CurrentUserModel.CurrentUser, PasswordTexBox.Text);
                 new TwipsterMainWindow().Show();
                 Close();
             } catch (Exception x) 

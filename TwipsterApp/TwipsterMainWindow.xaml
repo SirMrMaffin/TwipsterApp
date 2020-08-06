@@ -13,8 +13,9 @@
         <Label Content="Current user:" FontSize="25" FontWeight="ExtraBold" HorizontalAlignment="Left" Height="44" Margin="10,10,0,0" VerticalAlignment="Top" Width="174" VerticalContentAlignment="Top"/>
         <TextBlock Background="BurlyWood" Name="CurrentUserTextBlock" Height="152" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,54,0,186" TextWrapping="Wrap" Width="174"/>
         <Button Name="CreatePostButton" Content="Create post" Margin="10,212,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="37" Click="OnCreatePostButtonClicked" Width="174"/>
-        <Button x:Name="DeletePostButton" Content="Delete post" Margin="10,254,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="37" Click="OnCreatePostButtonClicked" Width="174"/>
-        <Button Name="LogOutButton" Content="Log out" Margin="10,296,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="174" Height="37" Click="OnLogOutButtonClicked"/>
+        <Button Name="DeletePostButton" Content="Delete post" Margin="10,254,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="37" Width="174"/>
+        <Button Name="EditUserButton" Content="Edit information" Margin="10,296,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="174" Height="37" Click="OnEditUserButtonClicked"/>
+        <Button Name="LogOutButton" Content="Log out" Margin="10,338,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="174" Height="38" Click="OnLogOutButtonClicked"/>
 
         <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Width="197" Margin="197,0,0,0"/>
         <Label Content="Other users:" HorizontalAlignment="Left" FontSize="25" FontWeight="ExtraBold" Height="44" Margin="211,10,0,0" VerticalAlignment="Top" Width="169" VerticalContentAlignment="Top"/>

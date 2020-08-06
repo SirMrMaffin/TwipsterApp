@@ -27,7 +27,7 @@ namespace TwipsterApp
             using var context = new TwipsterDbContext();
             var post = new Post
             {
-                UserId = CurrentUserModel.currentUser.Id,
+                UserId = CurrentUserModel.CurrentUser.Id,
                 PostTime = DateTime.Now,
                 Content = PostContentTextBox.Text
             };

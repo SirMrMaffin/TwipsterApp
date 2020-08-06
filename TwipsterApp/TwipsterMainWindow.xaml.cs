@@ -18,7 +18,7 @@ namespace TwipsterApp
 
         private void OnWindowLoaded(object sender, RoutedEventArgs e)
         {
-            var currentUser = CurrentUserModel.currentUser;
+            var currentUser = CurrentUserModel.CurrentUser;
 
             using var context = new TwipsterDbContext();
             
@@ -34,7 +34,7 @@ namespace TwipsterApp
                                 })
                                 .ToList();
 
-            PutCurrentUserInformationToTextBoxt(currentUser);
+            PutCurrentUserInformationToTextBoxt();
             UsersGrid.ItemsSource = usersCensored;
             PostGridRefresh(context);
         }
@@ -45,6 +45,11 @@ namespace TwipsterApp
             {
                 OnShowAllPostsButtonClicked(null, null);
             }).Show();
+        }
+
+        private void OnEditUserButtonClicked(object sender, RoutedEventArgs e)
+        {
+            new UserEditingWindow().Show();
         }
 
         private void OnLogOutButtonClicked(object sender, RoutedEventArgs e)
@@ -76,12 +81,12 @@ namespace TwipsterApp
             PostsGrid.ItemsSource = userPostsList;
         }
 
-        private void PutCurrentUserInformationToTextBoxt(User currentUser)
+        private void PutCurrentUserInformationToTextBoxt()
         {
-            CurrentUserTextBlock.Text = $"{currentUser.Name} {currentUser.Surname} \nDate of birth: {currentUser.BirthDate.Date} \nLogin: {currentUser.Login}";
+            CurrentUserTextBlock.Text = $"{CurrentUserModel.CurrentUser.Name} {CurrentUserModel.CurrentUser.Surname} \nDate of birth: {CurrentUserModel.CurrentUser.BirthDate.Date} \nLogin: {CurrentUserModel.CurrentUser.Login}";
         }
 
-        public void PostGridRefresh(TwipsterDbContext context)
+        private void PostGridRefresh(TwipsterDbContext context)
         {
             var postsList = context.Posts.OrderBy(x => x.PostTime).ToList();
             PostsGrid.ItemsSource = postsList;
