@@ -2,6 +2,7 @@
 using System.Windows;
 using TwipsterApp.Data;
 using TwipsterApp.Models;
+using TwipsterApp.Services;
 
 namespace TwipsterApp
 {
@@ -11,6 +12,7 @@ namespace TwipsterApp
     public partial class PostCreationWindow : Window
     {
         private readonly Action callback;
+        private UserVievModelServices userModelServices = new UserVievModelServices();
 
         private PostCreationWindow()
         {
@@ -27,7 +29,7 @@ namespace TwipsterApp
             using var context = new TwipsterDbContext();
             var post = new Post
             {
-                UserId = CurrentUserModel.CurrentUser.Id,
+                UserId = userModelServices.GetCurrentUser().Id,
                 PostTime = DateTime.Now,
                 Content = PostContentTextBox.Text
             };
@@ -42,7 +44,7 @@ namespace TwipsterApp
                 Close();
             } catch (Exception x)
             {
-                MessageBox.Show(x.Message + "\n Check provided information.");
+                new ExceptionHandlerService().Explain(x);
             }
         }
 

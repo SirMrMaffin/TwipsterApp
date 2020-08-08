@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using TwipsterApp.Data;
 using TwipsterApp.Models;
+using TwipsterApp.Services;
 
 namespace TwipsterApp
 {
@@ -11,26 +12,32 @@ namespace TwipsterApp
     /// </summary>
     public partial class UserEditingWindow : Window
     {
+        private readonly TwipsterMainWindow mainWindow;
+        private UserVievModelServices userModelServices = new UserVievModelServices();
         public UserEditingWindow()
         {
             InitializeComponent();
         }
 
-        private void OnWindowLoaded(object sender, RoutedEventArgs e)
+        public UserEditingWindow(TwipsterMainWindow mainWindow) : this()
         {
-            LoginTexBox.Text = CurrentUserModel.CurrentUser.Login;
-            NameTexBox.Text = CurrentUserModel.CurrentUser.Name;
-            SurnameTexBox.Text = CurrentUserModel.CurrentUser.Surname;
-            DateOfBirthPicker.DisplayDate = CurrentUserModel.CurrentUser.BirthDate;
+            this.mainWindow = mainWindow;
         }
 
-
-        private void SaveChangesButton_Click(object sender, RoutedEventArgs e)
+        private void OnWindowLoaded(object sender, RoutedEventArgs e)
         {
-            using var context = new TwipsterDbContext();
+            LoginTexBox.Text = userModelServices.GetCurrentUser().Login;
+            NameTexBox.Text = userModelServices.GetCurrentUser().Name;
+            SurnameTexBox.Text = userModelServices.GetCurrentUser().Surname;
+            DateOfBirthPicker.SelectedDate = userModelServices.GetCurrentUser().BirthDate;
+        }
+
+        private void OnSaveChangesButtonClicked(object sender, RoutedEventArgs e)
+        {
             try
             {
-                var currentUserEntity = context.Users.Single(x => x.Login == CurrentUserModel.CurrentUser.Login);
+                using var context = new TwipsterDbContext();
+                var currentUserEntity = context.Users.Single(x => x.Login == userModelServices.GetCurrentUser().Login);
 
                 currentUserEntity.Login = LoginTexBox.Text;
                 currentUserEntity.Name = NameTexBox.Text;
@@ -43,7 +50,7 @@ namespace TwipsterApp
                 Close();
             } catch (Exception x)
             {
-                MessageBox.Show(x.Message + "\n Check provided information.");
+                new ExceptionHandlerService().Explain(x);
             }
         }
 
@@ -54,13 +61,8 @@ namespace TwipsterApp
 
         private void PutCurrentUserInformationToTextBoxt(User currentUserEntity)
         {
-            var twipsterMainWindowOpened = Application.Current.Windows
-                .Cast<Window>()
-                .Single(window => window is TwipsterMainWindow) as TwipsterMainWindow;
-            var userTextBlock = twipsterMainWindowOpened.CurrentUserTextBlock;
-
             CurrentUserModel.CurrentUser = currentUserEntity;
-            userTextBlock.Text = $"{CurrentUserModel.CurrentUser.Name} {CurrentUserModel.CurrentUser.Surname} \nDate of birth: {CurrentUserModel.CurrentUser.BirthDate.Date} \nLogin: {CurrentUserModel.CurrentUser.Login}";
+            mainWindow.CurrentUserTextBlock.Text = userModelServices.CurrentUserToString();
         }
 
         private void ChangePasswordButton_Click(object sender, RoutedEventArgs e)

@@ -18,7 +18,7 @@
         <Label Content="CHANGE DAY OF BIRTH" HorizontalAlignment="Center" Height="25" Margin="0,232,0,0" VerticalAlignment="Top" Width="150"/>
         <DatePicker Name="DateOfBirthPicker" HorizontalAlignment="Center" Margin="0,262,0,0" VerticalAlignment="Top" Height="28" Width="150"/>
         <Button Name="ChangePasswordButton" Content="Change password" FontSize="18" HorizontalAlignment="Center" Height="35" Width="151" Margin="0,315,0,0" VerticalAlignment="Top" Click="ChangePasswordButton_Click"/>
-        <Button Name="SaveChangesButton" Content="Save changes" FontSize="20" HorizontalAlignment="Center" Height="35" Width="151" Margin="0,355,0,0" VerticalAlignment="Top" Click="SaveChangesButton_Click"/>
+        <Button Name="SaveChangesButton" Content="Save changes" FontSize="20" HorizontalAlignment="Center" Height="35" Width="151" Margin="0,355,0,0" VerticalAlignment="Top" Click="OnSaveChangesButtonClicked"/>
         <Button Name="CancelButton" Content="Cancel" FontSize="16" HorizontalAlignment="Center" Height="26" Margin="0,395,0,0" VerticalAlignment="Top" Width="98" Click="OnCancelButtonClicked"/>
     </Grid>
 </Window>

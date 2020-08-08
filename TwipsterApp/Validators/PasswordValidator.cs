@@ -5,7 +5,16 @@ namespace TwipsterApp.Validators
 {
     public class PasswordValidator : IValidator
     {
-        public void Validate(string userPassword, string lineToValidateTo)
+        private readonly string userPassword;
+        private readonly string lineToValidateTo;
+
+        public PasswordValidator(string userPassword, string lineToValidateTo)
+        {
+            this.userPassword = userPassword;
+            this.lineToValidateTo = lineToValidateTo;
+        }
+
+        public void Validate()
         {
             if (userPassword != lineToValidateTo)
             {

@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using TwipsterApp.Data;
-using TwipsterApp.Models;
+using TwipsterApp.Interfaces;
+using TwipsterApp.Services;
 using TwipsterApp.Validators;
 
 namespace TwipsterApp
@@ -12,6 +14,7 @@ namespace TwipsterApp
     /// </summary>
     public partial class PasswordChangeWindow : Window
     {
+        private UserVievModelServices userModelServices = new UserVievModelServices();
         public PasswordChangeWindow()
         {
             InitializeComponent();
@@ -19,22 +22,29 @@ namespace TwipsterApp
 
         private void ChangePasswordButton_Click(object sender, RoutedEventArgs e)
         {
+            var validatorsList = new List<IValidator> 
+            {
+                new PasswordValidator(userModelServices.GetCurrentUser().Password, OldPasswordPasswordBox.Password),
+                new ChangedPasswordValidator(NewPasswordPasswordBox.Password, RepeatNewPasswordPasswordBox.Password),
+            };
+
             using var context = new TwipsterDbContext();
             try
             {
-                new PasswordValidator().Validate(CurrentUserModel.CurrentUser.Password, OldPasswordTextBox.Text);
-                new ChangedPasswordValidator().Validate(NewPasswordFirstTextBox.Text, NewPasswordSecondTextBox.Text);
+                foreach(var validator in validatorsList)
+                {
+                    validator.Validate();
+                };
 
-                var currentUserEntity = context.Users.Single(x => x.Login == CurrentUserModel.CurrentUser.Login);
-                currentUserEntity.Password = NewPasswordFirstTextBox.Text;
+                var currentUserEntity = context.Users.Single(x => x.Login == userModelServices.GetCurrentUser().Login);
+                currentUserEntity.Password = NewPasswordPasswordBox.Password;
                 context.SaveChanges();
 
                 Close();
             } catch (Exception x)
             {
-                MessageBox.Show(x.Message + "\n Check provided information.");
+                new ExceptionHandlerService().Explain(x);
             }
-
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

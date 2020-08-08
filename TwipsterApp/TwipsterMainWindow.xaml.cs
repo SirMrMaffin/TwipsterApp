@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Windows;
 using TwipsterApp.Data;
-using TwipsterApp.Models;
+using TwipsterApp.Services;
 using TwipsterApp.ViewModels;
 
 namespace TwipsterApp
@@ -11,6 +11,7 @@ namespace TwipsterApp
     /// </summary>
     public partial class TwipsterMainWindow : Window
     {
+        private UserVievModelServices userModelServices = new UserVievModelServices();
         public TwipsterMainWindow()
         {
             InitializeComponent();
@@ -18,13 +19,11 @@ namespace TwipsterApp
 
         private void OnWindowLoaded(object sender, RoutedEventArgs e)
         {
-            var currentUser = CurrentUserModel.CurrentUser;
-
             using var context = new TwipsterDbContext();
             
             //Deleting current user and other users passwords and logins from array
             var usersCensored = context.Users.OrderBy(x => x.Name)
-                                .Where(x => x.Login != currentUser.Login)
+                                .Where(x => x.Login != userModelServices.GetCurrentUser().Login)
                                 .Select(x => new SelectedUserModel 
                                 {
                                     Login = x.Login,
@@ -34,7 +33,7 @@ namespace TwipsterApp
                                 })
                                 .ToList();
 
-            PutCurrentUserInformationToTextBoxt();
+            CurrentUserTextBlock.Text = userModelServices.CurrentUserToString();
             UsersGrid.ItemsSource = usersCensored;
             PostGridRefresh(context);
         }
@@ -49,7 +48,7 @@ namespace TwipsterApp
 
         private void OnEditUserButtonClicked(object sender, RoutedEventArgs e)
         {
-            new UserEditingWindow().Show();
+            new UserEditingWindow(this).Show();
         }
 
         private void OnLogOutButtonClicked(object sender, RoutedEventArgs e)
@@ -79,11 +78,6 @@ namespace TwipsterApp
                                         })
                                         .ToList();
             PostsGrid.ItemsSource = userPostsList;
-        }
-
-        private void PutCurrentUserInformationToTextBoxt()
-        {
-            CurrentUserTextBlock.Text = $"{CurrentUserModel.CurrentUser.Name} {CurrentUserModel.CurrentUser.Surname} \nDate of birth: {CurrentUserModel.CurrentUser.BirthDate.Date} \nLogin: {CurrentUserModel.CurrentUser.Login}";
         }
 
         private void PostGridRefresh(TwipsterDbContext context)

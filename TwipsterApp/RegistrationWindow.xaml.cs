@@ -2,6 +2,7 @@
 using System.Windows;
 using TwipsterApp.Data;
 using TwipsterApp.Models;
+using TwipsterApp.Services;
 
 namespace TwipsterApp
 {
@@ -25,7 +26,7 @@ namespace TwipsterApp
                     Name = NameTexBox.Text,
                     Surname = SurnameTexBox.Text,
                     BirthDate = DateOfBirthPicker.SelectedDate.Value,
-                    Password = PasswordTexBox.Text
+                    Password = PasswordPasswordBox.Password
                 };
 
                 try {
@@ -35,7 +36,7 @@ namespace TwipsterApp
                     Close();
                 } catch (Exception x) 
                 {
-                    MessageBox.Show(x.Message + "\n Check provided information.");
+                    new ExceptionHandlerService().Explain(x);
                 }
             }
         }

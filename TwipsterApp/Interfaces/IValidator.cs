@@ -2,6 +2,6 @@
 {
     public interface IValidator
     {
-        public void Validate(string firstLine, string secondLine);
+        public void Validate();
     }
 }

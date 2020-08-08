@@ -5,7 +5,15 @@ namespace TwipsterApp.Validators
 {
     public class ChangedPasswordValidator : IValidator
     {
-        public void Validate(string firstLine, string secondLine)
+        private readonly string firstLine;
+        private readonly string secondLine;
+
+        public ChangedPasswordValidator(string firstLine, string secondLine)
+        {
+            this.firstLine = firstLine;
+            this.secondLine = secondLine;
+        }
+        public void Validate()
         {
             if (firstLine != secondLine)
             {
