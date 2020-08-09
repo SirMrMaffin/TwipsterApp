@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Windows;
 using TwipsterApp.Data;
+using TwipsterApp.Models;
 using TwipsterApp.Services;
 using TwipsterApp.ViewModels;
 
@@ -11,7 +12,7 @@ namespace TwipsterApp
     /// </summary>
     public partial class TwipsterMainWindow : Window
     {
-        private UserVievModelServices userModelServices = new UserVievModelServices();
+        private UserModelService userModelServices = new UserModelService();
         public TwipsterMainWindow()
         {
             InitializeComponent();
@@ -23,7 +24,7 @@ namespace TwipsterApp
             
             //Deleting current user and other users passwords and logins from array
             var usersCensored = context.Users.OrderBy(x => x.Name)
-                                .Where(x => x.Login != userModelServices.GetCurrentUser().Login)
+                                .Where(x => x.Login != CurrentUserModel.CurrentUser.Login)
                                 .Select(x => new SelectedUserModel 
                                 {
                                     Login = x.Login,

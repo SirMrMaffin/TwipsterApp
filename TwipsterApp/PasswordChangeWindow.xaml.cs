@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using TwipsterApp.Data;
 using TwipsterApp.Interfaces;
+using TwipsterApp.Models;
 using TwipsterApp.Services;
 using TwipsterApp.Validators;
 
@@ -14,17 +15,16 @@ namespace TwipsterApp
     /// </summary>
     public partial class PasswordChangeWindow : Window
     {
-        private UserVievModelServices userModelServices = new UserVievModelServices();
         public PasswordChangeWindow()
         {
             InitializeComponent();
         }
 
-        private void ChangePasswordButton_Click(object sender, RoutedEventArgs e)
+        private void OnChangePasswordButtonClicked(object sender, RoutedEventArgs e)
         {
             var validatorsList = new List<IValidator> 
             {
-                new PasswordValidator(userModelServices.GetCurrentUser().Password, OldPasswordPasswordBox.Password),
+                new PasswordValidator(CurrentUserModel.CurrentUser.Password, OldPasswordPasswordBox.Password),
                 new ChangedPasswordValidator(NewPasswordPasswordBox.Password, RepeatNewPasswordPasswordBox.Password),
             };
 
@@ -36,7 +36,7 @@ namespace TwipsterApp
                     validator.Validate();
                 };
 
-                var currentUserEntity = context.Users.Single(x => x.Login == userModelServices.GetCurrentUser().Login);
+                var currentUserEntity = context.Users.Single(x => x.Login == CurrentUserModel.CurrentUser.Login);
                 currentUserEntity.Password = NewPasswordPasswordBox.Password;
                 context.SaveChanges();
 
@@ -47,7 +47,7 @@ namespace TwipsterApp
             }
         }
 
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        private void OnCancelButtonClicked(object sender, RoutedEventArgs e)
         {
             Close();
         }

@@ -13,7 +13,7 @@ namespace TwipsterApp
     public partial class UserEditingWindow : Window
     {
         private readonly TwipsterMainWindow mainWindow;
-        private UserVievModelServices userModelServices = new UserVievModelServices();
+        private UserModelService userModelServices = new UserModelService();
         public UserEditingWindow()
         {
             InitializeComponent();
@@ -26,10 +26,10 @@ namespace TwipsterApp
 
         private void OnWindowLoaded(object sender, RoutedEventArgs e)
         {
-            LoginTexBox.Text = userModelServices.GetCurrentUser().Login;
-            NameTexBox.Text = userModelServices.GetCurrentUser().Name;
-            SurnameTexBox.Text = userModelServices.GetCurrentUser().Surname;
-            DateOfBirthPicker.SelectedDate = userModelServices.GetCurrentUser().BirthDate;
+            LoginTexBox.Text = CurrentUserModel.CurrentUser.Login;
+            NameTexBox.Text = CurrentUserModel.CurrentUser.Name;
+            SurnameTexBox.Text = CurrentUserModel.CurrentUser.Surname;
+            DateOfBirthPicker.SelectedDate = CurrentUserModel.CurrentUser.BirthDate;
         }
 
         private void OnSaveChangesButtonClicked(object sender, RoutedEventArgs e)
@@ -37,7 +37,7 @@ namespace TwipsterApp
             try
             {
                 using var context = new TwipsterDbContext();
-                var currentUserEntity = context.Users.Single(x => x.Login == userModelServices.GetCurrentUser().Login);
+                var currentUserEntity = context.Users.Single(x => x.Login == CurrentUserModel.CurrentUser.Login);
 
                 currentUserEntity.Login = LoginTexBox.Text;
                 currentUserEntity.Name = NameTexBox.Text;
@@ -65,7 +65,7 @@ namespace TwipsterApp
             mainWindow.CurrentUserTextBlock.Text = userModelServices.CurrentUserToString();
         }
 
-        private void ChangePasswordButton_Click(object sender, RoutedEventArgs e)
+        private void OnChangePasswordButtonClicked(object sender, RoutedEventArgs e)
         {
             new PasswordChangeWindow().Show();
         }

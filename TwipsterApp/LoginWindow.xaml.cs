@@ -3,7 +3,6 @@ using System.Linq;
 using System.Windows;
 using TwipsterApp.Data;
 using TwipsterApp.Models;
-using TwipsterApp.Services;
 using TwipsterApp.Validators;
 
 namespace TwipsterApp
@@ -13,7 +12,6 @@ namespace TwipsterApp
     /// </summary>
     public partial class LoginWindow : Window
     {
-        private UserVievModelServices userModelServices = new UserVievModelServices(); 
         public LoginWindow()
         {
             InitializeComponent();
@@ -30,7 +28,7 @@ namespace TwipsterApp
             try
             {
                 CurrentUserModel.CurrentUser = context.Users.Single(x => x.Login == LoginTexBox.Text);
-                new PasswordValidator(userModelServices.GetCurrentUser().Password, PasswordPasswordBox.Password).Validate();
+                new PasswordValidator(CurrentUserModel.CurrentUser.Password, PasswordPasswordBox.Password).Validate();
                 new TwipsterMainWindow().Show();
                 Close();
             }

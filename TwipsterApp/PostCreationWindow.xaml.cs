@@ -12,7 +12,6 @@ namespace TwipsterApp
     public partial class PostCreationWindow : Window
     {
         private readonly Action callback;
-        private UserVievModelServices userModelServices = new UserVievModelServices();
 
         private PostCreationWindow()
         {
@@ -29,7 +28,7 @@ namespace TwipsterApp
             using var context = new TwipsterDbContext();
             var post = new Post
             {
-                UserId = userModelServices.GetCurrentUser().Id,
+                UserId = CurrentUserModel.CurrentUser.Id,
                 PostTime = DateTime.Now,
                 Content = PostContentTextBox.Text
             };
