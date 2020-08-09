@@ -11,7 +11,7 @@
         <Label Content="LOGIN" HorizontalAlignment="Center" Height="30" Margin="0,52,0,0" VerticalAlignment="Top" Width="150"/>
         <TextBox Name="LoginTexBox" HorizontalAlignment="Center" Height="48" Width="150" Margin="0,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
         <Label Content="PASSWORD" HorizontalAlignment="Center" Height="30" Margin="0,143,0,0" VerticalAlignment="Top" Width="150"/>
-        <TextBox Name="PasswordTexBox" HorizontalAlignment="Center" Height="48" Width="150" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+        <PasswordBox Name="PasswordPasswordBox" HorizontalAlignment="Center" Height="48" Width="150" VerticalAlignment="Center" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
         <Button Name="LoginButton" Content="Log In" FontSize="35" HorizontalAlignment="Center" Height="60" Width="200" Margin="0,242,0,0" VerticalAlignment="Top" VerticalContentAlignment="Top" Click="OnLoginButtonClicked"/>
         <Button Name="RegisterButton" Content="Register" FontSize="20" HorizontalAlignment="Center" Height="35" Width="150" Margin="0,307,0,0" VerticalAlignment="Top" VerticalContentAlignment="Top" Click="RegisterButton_Click"/>
     </Grid>

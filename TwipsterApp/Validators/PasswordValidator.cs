@@ -1,14 +1,22 @@
 ﻿using System;
 using TwipsterApp.Interfaces;
-using TwipsterApp.Models;
 
 namespace TwipsterApp.Validators
 {
     public class PasswordValidator : IValidator
     {
-        public void Validate(User user, string lineToValidateTo)
+        private readonly string userPassword;
+        private readonly string lineToValidateTo;
+
+        public PasswordValidator(string userPassword, string lineToValidateTo)
         {
-            if (user.Password != lineToValidateTo)
+            this.userPassword = userPassword;
+            this.lineToValidateTo = lineToValidateTo;
+        }
+
+        public void Validate()
+        {
+            if (userPassword != lineToValidateTo)
             {
                 throw new Exception("Invalid password.");
             }

@@ -17,7 +17,7 @@
         <Label Content="DAY OF BIRTH" HorizontalAlignment="Center" Height="25" Margin="0,232,0,0" VerticalAlignment="Top" Width="150"/>
         <DatePicker Name="DateOfBirthPicker" HorizontalAlignment="Center" Margin="0,262,0,0" VerticalAlignment="Top" Height="28" Width="150"/>
         <Label Content="PASSWORD" HorizontalAlignment="Center" Height="25" Margin="0,295,0,0" VerticalAlignment="Top" Width="150"/>
-        <TextBox Name="PasswordTexBox" VerticalAlignment="Top" HorizontalAlignment="Center" Height="35" Width="150" TextWrapping="Wrap" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0,320,0,0"/>
+        <PasswordBox Name="PasswordPasswordBox" VerticalAlignment="Top" HorizontalAlignment="Center" Height="35" Width="150" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0,320,0,0"/>
         <Button Name="RegisterButton" Content="Register" FontSize="20" HorizontalAlignment="Center" Height="35" Width="151" Margin="0,376,0,0" VerticalAlignment="Top" VerticalContentAlignment="Top" Click="OnRegisterButtonClicked"/>
     </Grid>
 </Window>

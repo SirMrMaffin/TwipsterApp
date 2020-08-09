@@ -2,6 +2,6 @@
 {
     public static class CurrentUserModel
     {
-        public static User currentUser;    
+        public static User CurrentUser;    
     }
 }
