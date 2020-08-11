@@ -1,8 +1,11 @@
-﻿using System.Linq;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 using System.Windows;
 using TwipsterApp.Data;
 using TwipsterApp.Models;
 using TwipsterApp.Services;
+using TwipsterApp.Validators;
 using TwipsterApp.ViewModels;
 
 namespace TwipsterApp
@@ -47,6 +50,26 @@ namespace TwipsterApp
             }).Show();
         }
 
+        private void OnDeletePostButtonClicked(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using var context = new TwipsterDbContext();
+                var selectedPost = context.Posts.Include(x => x.User).Single(x => x.Id == (PostsGrid.SelectedItem as PostViewModel).Id);
+
+                new TwoLinesValidator(selectedPost.User.Login, CurrentUserModel.CurrentUser.Login, "You can delete only your posts.")
+                    .Validate();
+                context.Remove(selectedPost);
+                context.SaveChanges();
+                MessageBox.Show("Post succesfully deleted");
+                PostGridRefresh(context);
+            }
+            catch (Exception x)
+            {
+                ExceptionHandlerService.Explain(x);
+            }
+        }
+
         private void OnEditUserButtonClicked(object sender, RoutedEventArgs e)
         {
             new UserEditingWindow(this).Show();
@@ -83,9 +106,17 @@ namespace TwipsterApp
 
         private void PostGridRefresh(TwipsterDbContext context)
         {
-            var postsList = context.Posts.OrderBy(x => x.PostTime).ToList();
+            var postsList = context.Posts.OrderBy(x => x.PostTime)
+                                    .Select(x => new PostViewModel
+                                    {
+                                        Id = x.Id,
+                                        Name = x.User.Name,
+                                        Surname = x.User.Surname,
+                                        Content = x.Content,
+                                        PostTime = x.PostTime
+                                    })
+                                    .ToList();
             PostsGrid.ItemsSource = postsList;
         }
-
     }
 }

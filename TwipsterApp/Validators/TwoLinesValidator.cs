@@ -1,23 +1,27 @@
 ﻿using System;
+using System.Windows.Input;
 using TwipsterApp.Interfaces;
 
 namespace TwipsterApp.Validators
 {
-    public class ChangedPasswordValidator : IValidator
+    public class TwoLinesValidator : IValidator
     {
         private readonly string firstLine;
         private readonly string secondLine;
+        private readonly Exception exception;
 
-        public ChangedPasswordValidator(string firstLine, string secondLine)
+        public TwoLinesValidator(string firstLine, string secondLine, string exceptionMessage)
         {
             this.firstLine = firstLine;
             this.secondLine = secondLine;
+            exception = new Exception(exceptionMessage);
         }
+
         public void Validate()
         {
             if (firstLine != secondLine)
             {
-                throw new Exception("New password repeat is incorrect.");
+                throw exception;
             }
         }
     }

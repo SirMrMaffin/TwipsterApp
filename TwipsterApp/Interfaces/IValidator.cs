@@ -1,4 +1,6 @@
-﻿namespace TwipsterApp.Interfaces
+﻿using System;
+
+namespace TwipsterApp.Interfaces
 {
     public interface IValidator
     {

@@ -3,9 +3,9 @@ using System.Windows;
 
 namespace TwipsterApp.Services
 {
-    public class ExceptionHandlerService
+    public static class ExceptionHandlerService
     {
-        public void Explain(Exception x)
+        public static void Explain(Exception x)
         {
             MessageBox.Show(x.Message + "\n Check provided information.");
         }
