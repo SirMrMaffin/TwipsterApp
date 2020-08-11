@@ -36,7 +36,7 @@ namespace TwipsterApp
                     Close();
                 } catch (Exception x) 
                 {
-                    new ExceptionHandlerService().Explain(x);
+                    ExceptionHandlerService.Explain(x);
                 }
             }
         }

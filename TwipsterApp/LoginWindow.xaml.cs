@@ -28,7 +28,7 @@ namespace TwipsterApp
             try
             {
                 CurrentUserModel.CurrentUser = context.Users.Single(x => x.Login == LoginTexBox.Text);
-                new PasswordValidator(CurrentUserModel.CurrentUser.Password, PasswordPasswordBox.Password).Validate();
+                new TwoLinesValidator(CurrentUserModel.CurrentUser.Password, PasswordPasswordBox.Password, "Invalid password.").Validate();
                 new TwipsterMainWindow().Show();
                 Close();
             }

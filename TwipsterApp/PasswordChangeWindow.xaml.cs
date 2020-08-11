@@ -24,8 +24,8 @@ namespace TwipsterApp
         {
             var validatorsList = new List<IValidator> 
             {
-                new PasswordValidator(CurrentUserModel.CurrentUser.Password, OldPasswordPasswordBox.Password),
-                new ChangedPasswordValidator(NewPasswordPasswordBox.Password, RepeatNewPasswordPasswordBox.Password),
+                new TwoLinesValidator(CurrentUserModel.CurrentUser.Password, OldPasswordPasswordBox.Password, "Invalid password."),
+                new TwoLinesValidator(NewPasswordPasswordBox.Password, RepeatNewPasswordPasswordBox.Password, "New password repeat is incorrect."),
             };
 
             using var context = new TwipsterDbContext();
@@ -43,7 +43,7 @@ namespace TwipsterApp
                 Close();
             } catch (Exception x)
             {
-                new ExceptionHandlerService().Explain(x);
+                ExceptionHandlerService.Explain(x);
             }
         }
 
