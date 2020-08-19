@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TwipsterApp"
         mc:Ignorable="d"
-        Title="PostCreationWindow" Height="185" Width="306" ResizeMode="NoResize">
-    <Grid>
-        <TextBox Name="PostContentTextBox" VerticalAlignment="Top" Margin="21,10,22,0" TextWrapping="Wrap" Width="263" Height="114"/>
-        <Button Name="CancelButton" Content="Cancel" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="21,114,158,14" Width="127" Click="OnCancelButtonClicked"/>
-        <Button Name="CreatePostButton" Content="Create post" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="158,114,22,14" Width="126" Click="OnCreatePostButtonClicked"/>
+        Title="PostCreationWindow" Height="213" Width="341" ResizeMode="NoResize">
+    <Grid Margin="0,0,0,2">
+        <TextBox Name="PostContentTextBox" VerticalAlignment="Top" Margin="10,10,66,0" TextWrapping="Wrap" Width="263" Height="114"/>
+        <Button Name="CancelButton" Content="Cancel" VerticalAlignment="Bottom" Margin="10,0,202,40" Width="127" Click="OnCancelButtonClicked"/>
+        <Button Name="CreatePostButton" Content="Create post" VerticalAlignment="Bottom" Margin="147,0,67,40" Width="126" Click="OnCreatePostButtonClicked"/>
     </Grid>
 </Window>
