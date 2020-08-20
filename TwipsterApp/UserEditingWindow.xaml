@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TwipsterApp"
         mc:Ignorable="d"
-        Title="Account info editor" Height="461" Width="229" ResizeMode="NoResize"
+        Title="Account info editor" Height="479" Width="229" ResizeMode="NoResize"
         Loaded="OnWindowLoaded">
     <Grid>
         <Label Content="Twipster" FontSize="20" FontFamily="Impact" HorizontalAlignment="Left" Margin="14,10,0,0" VerticalAlignment="Top" Height="37" Width="117" VerticalContentAlignment="Top"/>
+        <Button Name="DeleteUserButton" Content="Delete account" Background="Tomato" HorizontalAlignment="Right" Height="22" Margin="0,18,15,0" VerticalAlignment="Top" Width="83" Click="DeleteUserButton_Click"/>
         <Label Content="CHANGE LOGIN" HorizontalAlignment="Center" Height="25" Margin="0,52,0,0" VerticalAlignment="Top" Width="150"/>
         <TextBox Name="LoginTexBox" VerticalAlignment="Top" HorizontalAlignment="Center" Height="35" Width="150" TextWrapping="Wrap" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0,77,0,0"/>
         <Label Content="CHANGE NAME" HorizontalAlignment="Center" Height="25" Margin="0,112,0,0" VerticalAlignment="Top" Width="150"/>

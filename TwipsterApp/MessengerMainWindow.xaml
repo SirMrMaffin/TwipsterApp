@@ -1,0 +1,23 @@
+﻿<Window x:Class="TwipsterApp.MessengerMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TwipsterApp"
+        mc:Ignorable="d"
+        Title="Twipster messenger" Height="476" Width="675" ResizeMode="NoResize" Loaded="OnWindowLoaded">
+    <Grid>
+        <Button Name="CloseMessengerButton" Content="Close messenger" Background="LightPink" HorizontalAlignment="Right"  Height="22" Margin="0,6,10,0" VerticalAlignment="Top" Width="105" Click="OnCloseMessengerButtonClicked"/>
+
+        <Label Content="Your dialogues:" HorizontalAlignment="Left" Margin="20,6,0,0" VerticalAlignment="Top" Width="146"/>
+        <DataGrid Name="AllDialoguesDatagrid" HorizontalAlignment="Left" Height="288" Margin="10,32,0,0" VerticalAlignment="Top" Width="256"/>
+        <Button Name="OpenSelectedDialogueButton" Content="Open selected dialogue" HorizontalAlignment="Left" Margin="120,0,0,54" VerticalAlignment="Bottom" Height="55" Width="146" Click="OnOpenSelectedDialogueButtonClicked"/>
+        <Button Name="NewDialogueButton" Content="New dialogue" HorizontalAlignment="Left" Height="55" Margin="10,0,0,54" VerticalAlignment="Bottom" Width="105" Click="OnNewDialogueButtonClicked"/>
+        <Button Name="DeleteSelectedDialogueButton" Content="Delete selected dialogue" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Height="39" Width="256"/>
+
+        <Label Content="Messages in selected dialogue:" HorizontalAlignment="Right" Margin="0,6,190,0" VerticalAlignment="Top" Width="180"/>
+        <DataGrid Name="DialogueMessagesDatagrid" HorizontalAlignment="Right" Height="335" Margin="0,32,10,0" VerticalAlignment="Top" Width="374"/>
+        <TextBox Name="MessageBodyTextBox" HorizontalAlignment="Right" Height="52" Margin="0,0,99,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="285"/>
+        <Button Name="SendMessageButton" Content="Send messege" HorizontalAlignment="Right" Height="52" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="84" Click="OnSendMessageButtonClicked"/>
+    </Grid>
+</Window>

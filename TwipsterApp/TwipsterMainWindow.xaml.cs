@@ -15,7 +15,8 @@ namespace TwipsterApp
     /// </summary>
     public partial class TwipsterMainWindow : Window
     {
-        private UserModelService userModelServices = new UserModelService();
+        private readonly UserModelService userModelServices = new UserModelService();
+
         public TwipsterMainWindow()
         {
             InitializeComponent();
@@ -28,8 +29,9 @@ namespace TwipsterApp
             //Deleting current user and other users passwords and logins from array
             var usersCensored = context.Users.OrderBy(x => x.Name)
                                 .Where(x => x.Login != CurrentUserModel.CurrentUser.Login)
-                                .Select(x => new SelectedUserModel 
+                                .Select(x => new UserViewModel 
                                 {
+                                    Id = x.Id,
                                     Login = x.Login,
                                     Name = x.Name,
                                     Surname = x.Surname,
@@ -39,7 +41,13 @@ namespace TwipsterApp
 
             CurrentUserTextBlock.Text = userModelServices.CurrentUserToString();
             UsersGrid.ItemsSource = usersCensored;
+            UsersGrid.Columns[0].Visibility = Visibility.Hidden;
             PostGridRefresh(context);
+        }
+
+        private void OnOpenMessengerButtonClicked(object sender, RoutedEventArgs e)
+        {
+            new MessengerMainWindow().Show();
         }
 
         private void OnCreatePostButtonClicked(object sender, RoutedEventArgs e)
@@ -90,11 +98,12 @@ namespace TwipsterApp
         private void OnShowSelectedUserPostsClicked(object sender, RoutedEventArgs e)
         {
             using var context = new TwipsterDbContext();
-            var selectedUser = context.Users.Single(x => x.Login == (UsersGrid.SelectedItem as SelectedUserModel).Login);
+            var selectedUser = context.Users.Single(x => x.Login == (UsersGrid.SelectedItem as UserViewModel).Login);
 
             var userPostsList = context.Posts.Where(x => x.UserId == selectedUser.Id)
                                         .Select(x => new PostViewModel 
                                         {
+                                            Id = x.Id,
                                             Name = x.User.Name,
                                             Surname = x.User.Surname,
                                             Content = x.Content,
@@ -102,6 +111,7 @@ namespace TwipsterApp
                                         })
                                         .ToList();
             PostsGrid.ItemsSource = userPostsList;
+            PostsGrid.Columns[0].Visibility = Visibility.Hidden;
         }
 
         private void PostGridRefresh(TwipsterDbContext context)
@@ -117,6 +127,7 @@ namespace TwipsterApp
                                     })
                                     .ToList();
             PostsGrid.ItemsSource = postsList;
+            PostsGrid.Columns[0].Visibility = Visibility.Hidden;
         }
     }
 }

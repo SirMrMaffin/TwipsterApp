@@ -2,7 +2,7 @@
 
 namespace TwipsterApp.Migrations
 {
-    public partial class UserPostConnectionAdded : Migration
+    public partial class MessageNameCorrection : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

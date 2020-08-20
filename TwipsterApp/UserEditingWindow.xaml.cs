@@ -32,6 +32,20 @@ namespace TwipsterApp
             DateOfBirthPicker.SelectedDate = CurrentUserModel.CurrentUser.BirthDate;
         }
 
+        private void DeleteUserButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("You sure you want to delete account?", "Delete account", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                using var context = new TwipsterDbContext();
+                var currentUserEntity = context.Users.Single(x => x.Login == CurrentUserModel.CurrentUser.Login);
+                context.Remove(currentUserEntity);
+                context.SaveChanges();
+                mainWindow.Close();
+                new LoginWindow().Show();
+                Close();
+            }
+        }
+
         private void OnSaveChangesButtonClicked(object sender, RoutedEventArgs e)
         {
             try
@@ -69,5 +83,6 @@ namespace TwipsterApp
         {
             new PasswordChangeWindow().Show();
         }
+
     }
 }
