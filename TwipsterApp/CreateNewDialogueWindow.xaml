@@ -10,9 +10,9 @@
         <TextBox Name="SearchTextBox" HorizontalAlignment="Left" Margin="10,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Height="26"/>
         <Button Name="SearchButton" Content="Search" HorizontalAlignment="Left" Margin="194,10,0,0" VerticalAlignment="Top" Height="48" Width="83" Click="OnSearchButtonClicked"/>
         <DataGrid Name="UsersListDataGrid" Margin="10,63,23,121"/>
-        <TextBox Name="MessegeBodyTextBox" HorizontalAlignment="Left" Margin="10,324,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="267" Height="44"/>
+        <TextBox Name="MessageBodyTextBox" HorizontalAlignment="Left" Margin="10,324,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="267" Height="44"/>
         <Button Name="RefreshUsersListButtom" Content="Refresh users list" HorizontalAlignment="Left" Margin="10,373,0,0" VerticalAlignment="Top" Height="36" Width="121" Click="OnRefreshUsersListButtonClicked"/>
-        <Button Name="SendMessegeButton" Content="Send Messege" HorizontalAlignment="Left" Margin="136,373,0,0" VerticalAlignment="Top" Height="36" Width="141" Click="OnSendMessegeButtonClicked"/>
+        <Button Name="SendMessageButton" Content="Send Message" HorizontalAlignment="Left" Margin="136,373,0,0" VerticalAlignment="Top" Height="36" Width="141" Click="OnSendMessageButtonClicked"/>
         <Label Content="Search by name or surname:" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Width="179" Height="26"/>
 
     </Grid>

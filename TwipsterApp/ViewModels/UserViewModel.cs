@@ -1,11 +1,9 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace TwipsterApp.ViewModels
 {
-    public class UserVievModel
+    public class UserViewModel
     {
-        [Display(Order = -1)]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }

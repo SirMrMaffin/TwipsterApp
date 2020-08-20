@@ -25,7 +25,7 @@ namespace TwipsterApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Messeges",
+                name: "Messages",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -37,15 +37,15 @@ namespace TwipsterApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Messeges", x => x.Id);
+                    table.PrimaryKey("PK_Messages", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Messeges_Users_FromUserId",
+                        name: "FK_Messages_Users_FromUserId",
                         column: x => x.FromUserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Messeges_Users_ToUserId",
+                        name: "FK_Messages_Users_ToUserId",
                         column: x => x.ToUserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -74,13 +74,13 @@ namespace TwipsterApp.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Messeges_FromUserId",
-                table: "Messeges",
+                name: "IX_Messages_FromUserId",
+                table: "Messages",
                 column: "FromUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Messeges_ToUserId",
-                table: "Messeges",
+                name: "IX_Messages_ToUserId",
+                table: "Messages",
                 column: "ToUserId");
 
             migrationBuilder.CreateIndex(
@@ -98,7 +98,7 @@ namespace TwipsterApp.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Messeges");
+                name: "Messages");
 
             migrationBuilder.DropTable(
                 name: "Posts");

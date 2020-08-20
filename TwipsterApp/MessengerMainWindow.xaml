@@ -16,8 +16,8 @@
         <Button Name="DeleteSelectedDialogueButton" Content="Delete selected dialogue" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Height="39" Width="256"/>
 
         <Label Content="Messages in selected dialogue:" HorizontalAlignment="Right" Margin="0,6,190,0" VerticalAlignment="Top" Width="180"/>
-        <DataGrid Name="DialogueMessegesDatagrid" HorizontalAlignment="Right" Height="335" Margin="0,32,10,0" VerticalAlignment="Top" Width="374"/>
-        <TextBox Name="MessegeBodyTextBox" HorizontalAlignment="Right" Height="52" Margin="0,0,99,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="285"/>
-        <Button Name="SendMessegeButton" Content="Send messege" HorizontalAlignment="Right" Height="52" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="84" Click="OnSendMessegeButtonClicked"/>
+        <DataGrid Name="DialogueMessagesDatagrid" HorizontalAlignment="Right" Height="335" Margin="0,32,10,0" VerticalAlignment="Top" Width="374"/>
+        <TextBox Name="MessageBodyTextBox" HorizontalAlignment="Right" Height="52" Margin="0,0,99,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="285"/>
+        <Button Name="SendMessageButton" Content="Send messege" HorizontalAlignment="Right" Height="52" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="84" Click="OnSendMessageButtonClicked"/>
     </Grid>
 </Window>

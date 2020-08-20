@@ -33,13 +33,13 @@ namespace TwipsterApp
 
         private void OnSearchButtonClicked(object sender, RoutedEventArgs e)
         {
-            var searchedUsers = new List<UserVievModel>();
+            var searchedUsers = new List<UserViewModel>();
 
             foreach (var item in UsersListDataGrid.ItemsSource)
             {
-                if ((item as UserVievModel).Name  == SearchTextBox.Text || (item as UserVievModel).Surname == SearchTextBox.Text)
+                if ((item as UserViewModel).Name  == SearchTextBox.Text || (item as UserViewModel).Surname == SearchTextBox.Text)
                 {
-                    searchedUsers.Add(item as UserVievModel);
+                    searchedUsers.Add(item as UserViewModel);
                 }
             }
             UsersListDataGrid.ItemsSource = searchedUsers.OrderBy(x => x.Name);
@@ -56,7 +56,7 @@ namespace TwipsterApp
 
             var usersCensored = context.Users.OrderBy(x => x.Name)
                                 .Where(x => x.Login != CurrentUserModel.CurrentUser.Login)
-                                .Select(x => new UserVievModel
+                                .Select(x => new UserViewModel
                                 {
                                     Id = x.Id,
                                     Login = x.Login,
@@ -69,21 +69,21 @@ namespace TwipsterApp
             UsersListDataGrid.ItemsSource = usersCensored;
         }
 
-        private void OnSendMessegeButtonClicked(object sender, RoutedEventArgs e)
+        private void OnSendMessageButtonClicked(object sender, RoutedEventArgs e)
         {
             var context = new TwipsterDbContext();
 
-            var newMessege = new Messege
+            var newMessage = new Message
             {
                 FromUser = context.Users.Single(x => x.Id == CurrentUserModel.CurrentUser.Id),
-                ToUser = context.Users.Single(x => x.Id == (UsersListDataGrid.SelectedItem as UserVievModel).Id),
-                Content = MessegeBodyTextBox.Text,
+                ToUser = context.Users.Single(x => x.Id == (UsersListDataGrid.SelectedItem as UserViewModel).Id),
+                Content = MessageBodyTextBox.Text,
                 DateTimeSend = DateTime.Now
             };
 
             try
             {
-                context.Add(newMessege);
+                context.Add(newMessage);
                 context.SaveChanges();
                 mainWindow.AllUserDialoguesRefresh();
                 Close();

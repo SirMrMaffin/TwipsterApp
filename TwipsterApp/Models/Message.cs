@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TwipsterApp.Models
 {
-    public class Messege
+    public class Message
     {
         [Key]
         public int Id { get; set; }

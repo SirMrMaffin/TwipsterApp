@@ -29,7 +29,7 @@ namespace TwipsterApp
             //Deleting current user and other users passwords and logins from array
             var usersCensored = context.Users.OrderBy(x => x.Name)
                                 .Where(x => x.Login != CurrentUserModel.CurrentUser.Login)
-                                .Select(x => new UserVievModel 
+                                .Select(x => new UserViewModel 
                                 {
                                     Id = x.Id,
                                     Login = x.Login,
@@ -98,7 +98,7 @@ namespace TwipsterApp
         private void OnShowSelectedUserPostsClicked(object sender, RoutedEventArgs e)
         {
             using var context = new TwipsterDbContext();
-            var selectedUser = context.Users.Single(x => x.Login == (UsersGrid.SelectedItem as UserVievModel).Login);
+            var selectedUser = context.Users.Single(x => x.Login == (UsersGrid.SelectedItem as UserViewModel).Login);
 
             var userPostsList = context.Posts.Where(x => x.UserId == selectedUser.Id)
                                         .Select(x => new PostViewModel 

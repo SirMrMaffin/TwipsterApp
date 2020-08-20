@@ -21,7 +21,7 @@ namespace TwipsterApp.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("TwipsterApp.Models.Messege", b =>
+            modelBuilder.Entity("TwipsterApp.Models.Message", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -47,7 +47,7 @@ namespace TwipsterApp.Migrations
 
                     b.HasIndex("ToUserId");
 
-                    b.ToTable("Messeges");
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("TwipsterApp.Models.Post", b =>
@@ -113,7 +113,7 @@ namespace TwipsterApp.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("TwipsterApp.Models.Messege", b =>
+            modelBuilder.Entity("TwipsterApp.Models.Message", b =>
                 {
                     b.HasOne("TwipsterApp.Models.User", "FromUser")
                         .WithMany()
